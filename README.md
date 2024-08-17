@@ -5,7 +5,7 @@ It reads data from a Google Sheet and uses Linear Regression to build a predicti
 
 The results are displayed in the screenshot below:
 
-![Alt text](images/Screenshot 2024-08-16 181714.png)
+![Screenshot](images/Result_Screenshot.png)
 
 To run the program, you should generate the google cloud API credentials.json file.
 
