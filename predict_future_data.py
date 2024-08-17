@@ -12,6 +12,9 @@ def read_sheet_from_google():
     spreadsheet_url = "https://docs.google.com/spreadsheets/d/1B30XbPre5XyD9ItRZ6PN98xCeZe4SplpNQhEjq2ASHo/edit?gid=0#gid=0"
     # Define the scope and initialize credentials
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+
+    # Replace with your credentials.json file path.
+    # Ask https://gemini.google.com/ for "how to download google cloud credentials.json file".
     creds = ServiceAccountCredentials.from_json_keyfile_name(
         'C:/Users/markw/Documents/Keys/circular-study-427417-m0-5483493804ee.json', scope)
     # Authenticate and initialize client
