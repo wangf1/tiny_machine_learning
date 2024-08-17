@@ -6,24 +6,24 @@ from sklearn.linear_model import LinearRegression
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Google Spreadsheet URL
-spreadsheet_url = "https://docs.google.com/spreadsheets/d/1B30XbPre5XyD9ItRZ6PN98xCeZe4SplpNQhEjq2ASHo/edit?gid=0#gid=0"
 
-# Define the scope and initialize credentials
-scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-creds = ServiceAccountCredentials.from_json_keyfile_name(
-    'C:/Users/markw/Documents/Keys/circular-study-427417-m0-5483493804ee.json', scope)
+def read_sheet_from_google():
+    # Google Spreadsheet URL
+    spreadsheet_url = "https://docs.google.com/spreadsheets/d/1B30XbPre5XyD9ItRZ6PN98xCeZe4SplpNQhEjq2ASHo/edit?gid=0#gid=0"
+    # Define the scope and initialize credentials
+    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+    creds = ServiceAccountCredentials.from_json_keyfile_name(
+        'C:/Users/markw/Documents/Keys/circular-study-427417-m0-5483493804ee.json', scope)
+    # Authenticate and initialize client
+    client = gspread.authorize(creds)
+    spreadsheet = client.open_by_url(spreadsheet_url)
+    sheet = spreadsheet.sheet1
+    # Read data from the sheet
+    data = sheet.get_all_values()
+    return data
 
-# Authenticate and initialize client
-client = gspread.authorize(creds)
 
-spreadsheet = client.open_by_url(spreadsheet_url)
-
-sheet = spreadsheet.sheet1
-
-
-# Read data from the sheet
-data = sheet.get_all_values()
+data = read_sheet_from_google()
 
 # Create a pandas DataFrame
 df = pd.DataFrame(data[3:], columns=data[2])
